@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widget di Prenotazione</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <script>
+    /* ========================================
+       🔧 CONFIGURAZIONE WIDGET
+       Modifica questi parametri per personalizzare il tuo widget
+    ======================================== */
+
+    const WIDGET_CONFIG = {
+      // 🏨 CONFIGURAZIONE PROPRIETÀ
+      propertyId: "100037",                    // ID della tua proprietà su bookonline.pro
+      
+      // 🌍 CONFIGURAZIONE LINGUA
+      language: "auto",                        // "auto" per auto-rilevamento, oppure: "it", "en", "es", "fr", "de", "pt", "ru", "nl", "ca"
+      fallbackLanguage: "en",                  // Lingua di fallback se auto-rilevamento fallisce
+      
+      // 🎨 CONFIGURAZIONE COLORI
+      primaryColor: "#1ab394",                 // Colore principale (bottone, focus)
+      hoverColor: "#17a085",                   // Colore hover
+      activeColor: "#148f77",                  // Colore click
+      
+      // 🖋️ CONFIGURAZIONE FONT
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      
+      // 🎭 CONFIGURAZIONE ASPETTO
+      backgroundColor: "#f9f9f9",              // Sfondo widget
+      inputBackground: "white",                // Sfondo campi input
+      borderColor: "#e1e5e9",                  // Colore bordi
+      textColor: "#333",                       // Colore testo
+      borderRadius: "8px",                     // Bordi arrotondati
+      boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)", // Ombra widget
+      
+      // 🔧 CONFIGURAZIONE COMPORTAMENTO
+      defaultGuests: 2,                        // Numero ospiti predefinito
+      openInNewTab: true,                      // true = nuova scheda, false = stessa scheda
+      
+      // 📱 CONFIGURAZIONE MOBILE
+      fullScreenOnMobile: true,                // true = full screen su mobile sotto 480px
+      mobileBreakpoint: 768                    // Pixel per considerare mobile
+    };
+
+    /* ========================================
+       Fine configurazione - Non modificare sotto questa riga
+    ======================================== */
+  </script>
+</head>
+<body>
+  <div class="booking-widget-wrapper" id="bookingWidget">
+    <!-- Widget Header with Language Selector -->
+    <div class="widget-header">
+      <div class="language-selector">
+        <div class="language-dropdown" id="languageDropdown">
+          <button class="language-button" id="languageButton">
+            <span class="language-flag" id="currentFlag">🇮🇹</span>
+            <span class="language-arrow">▼</span>
+          </button>
+          <div class="language-menu" id="languageMenu">
+            <div class="language-option" data-lang="it">
+              <span class="language-flag">🇮🇹</span>
+              <span>Italiano</span>
+            </div>
+            <div class="language-option" data-lang="en">
+              <span class="language-flag">🇬🇧</span>
+              <span>English</span>
+            </div>
+            <div class="language-option" data-lang="es">
+              <span class="language-flag">🇪🇸</span>
+              <span>Español</span>
+            </div>
+            <div class="language-option" data-lang="fr">
+              <span class="language-flag">🇫🇷</span>
+              <span>Français</span>
+            </div>
+            <div class="language-option" data-lang="de">
+              <span class="language-flag">🇩🇪</span>
+              <span>Deutsch</span>
+            </div>
+            <div class="language-option" data-lang="pt">
+              <span class="language-flag">🇵🇹</span>
+              <span>Português</span>
+            </div>
+            <div class="language-option" data-lang="ru">
+              <span class="language-flag">🇷🇺</span>
+              <span>Русский</span>
+            </div>
+            <div class="language-option" data-lang="nl">
+              <span class="language-flag">🇳🇱</span>
+              <span>Nederlands</span>
+            </div>
+            <div class="language-option" data-lang="ca">
+              <span class="language-flag">🏴</span>
+              <span>Català</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Widget Content -->
+    <div class="widget-content">
+      <label for="checkin">Check-in</label>
+      <div class="date-input-wrapper">
+        <input type="date" id="checkin" name="checkin">
+        <div class="error-message" id="checkinError"></div>
+      </div>
+      
+      <label for="checkout">Check-out</label>
+      <div class="date-input-wrapper">
+        <input type="date" id="checkout" name="checkout">
+        <div class="error-message" id="checkoutError"></div>
+      </div>
+      
+      <label for="guests">Guests</label>
+      <div class="guests-input-wrapper">
+        <div class="guests-counter">
+          <span class="guests-text" id="guestsText">Guests</span>
+          <div class="guests-controls">
+            <button type="button" class="guests-button" id="guestsDecrement">−</button>
+            <div class="guests-display" id="guestsDisplay">2</div>
+            <button type="button" class="guests-button" id="guestsIncrement">+</button>
+          </div>
+        </div>
+        <input type="number" id="guests" name="guests" min="1" style="display: none;">
+        <div class="error-message" id="guestsError"></div>
+      </div>
+      
+      <button id="bookingBtn">Book Now</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
