@@ -1,0 +1,573 @@
+/* CSS Variables che si aggiornano dalla configurazione */
+:root {
+  --widget-primary-color: #1ab394;
+  --widget-darker-primary-color: #17a085;
+  --widget-darkest-primary-color: #148f77;
+  --widget-primary-color-rgb: 26, 179, 148;
+  --widget-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --widget-background: #f9f9f9;
+  --widget-input-background: white;
+  --widget-border-color: #e1e5e9;
+  --widget-text-color: #333;
+  --widget-border-radius: 8px;
+  --widget-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--widget-font-family);
+  touch-action: manipulation;
+}
+
+.booking-widget-wrapper {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px 24px 24px 24px;
+  border-radius: var(--widget-border-radius);
+  background: var(--widget-background);
+  box-shadow: var(--widget-shadow);
+  font-family: var(--widget-font-family);
+  position: relative;
+}
+
+.widget-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  min-height: 32px;
+  align-items: flex-start;
+}
+
+.language-selector {
+  z-index: 10;
+}
+
+.language-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.language-button {
+  background: var(--widget-background);
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 3px 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+.language-button:hover {
+  border-color: #111;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.language-flag {
+  width: 12px;
+  height: 9px;
+  border-radius: 1px;
+  display: inline-block;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.language-arrow {
+  font-size: 8px;
+  color: #333;
+  transition: transform 0.2s ease;
+}
+
+.language-dropdown.open .language-arrow {
+  transform: rotate(180deg);
+}
+
+.language-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid var(--widget-border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 120px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  display: none;
+  margin-top: 2px;
+}
+
+.language-dropdown.open .language-menu {
+  display: block;
+}
+
+.language-option {
+  padding: 5px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.language-option:hover {
+  background-color: rgba(var(--widget-primary-color-rgb), 0.1);
+}
+
+.language-option.active {
+  background-color: rgba(var(--widget-primary-color-rgb), 0.15);
+  font-weight: 600;
+}
+
+.widget-content {
+  width: 100%;
+}
+
+.booking-widget-wrapper label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  color: var(--widget-text-color);
+  font-size: 15px;
+}
+
+.date-input-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.booking-widget-wrapper input {
+  padding: 14px 16px;
+  font-size: 16px;
+  border-radius: var(--widget-border-radius);
+  border: 2px solid var(--widget-border-color);
+  width: 100%;
+  background: var(--widget-input-background);
+  transition: border-color 0.2s ease;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.guests-input-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.guests-counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--widget-input-background);
+  border: 2px solid var(--widget-border-color);
+  border-radius: var(--widget-border-radius);
+  padding: 14px 16px;
+  transition: border-color 0.2s ease;
+  font-size: 16px;
+}
+
+.guests-counter:focus-within {
+  border-color: var(--widget-primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--widget-primary-color-rgb), 0.1);
+}
+
+.guests-text {
+  color: var(--widget-text-color);
+  font-weight: 400;
+}
+
+.guests-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.guests-button {
+  background: transparent;
+  border: 2px solid var(--widget-primary-color);
+  color: var(--widget-primary-color);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1;
+}
+
+.guests-button:hover {
+  background: rgba(var(--widget-primary-color-rgb), 0.1);
+  transform: scale(1.05);
+}
+
+.guests-button:active {
+  background: rgba(var(--widget-primary-color-rgb), 0.2);
+  transform: scale(0.95);
+}
+
+.guests-button:disabled {
+  background: transparent;
+  border-color: #ccc;
+  color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.guests-display {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--widget-text-color);
+  min-width: 24px;
+  text-align: center;
+}
+
+.booking-widget-wrapper input[type="number"] {
+  display: none;
+}
+
+/* Migliore gestione calendar picker su tutti i dispositivi */
+.booking-widget-wrapper input[type="date"] {
+  position: relative;
+  cursor: pointer;
+}
+
+.booking-widget-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 8px;
+  margin: 0;
+  background: transparent;
+  color: var(--widget-primary-color);
+  font-size: 18px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.booking-widget-wrapper input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Firefox */
+.booking-widget-wrapper input[type="date"]::-moz-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 8px;
+  color: var(--widget-primary-color);
+}
+
+.booking-widget-wrapper input:focus {
+  outline: none;
+  border-color: var(--widget-primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--widget-primary-color-rgb), 0.1);
+}
+
+.booking-widget-wrapper button {
+  background: linear-gradient(135deg, var(--widget-primary-color) 0%, var(--widget-darker-primary-color) 100%);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--widget-border-radius);
+  padding: 16px 24px;
+  font-size: 17px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(var(--widget-primary-color-rgb), 0.3);
+  font-family: inherit;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.booking-widget-wrapper button:hover {
+  background: linear-gradient(135deg, var(--widget-darker-primary-color) 0%, var(--widget-darkest-primary-color) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(var(--widget-primary-color-rgb), 0.4);
+}
+
+.booking-widget-wrapper button:active {
+  transform: translateY(0);
+}
+
+/* TABLET */
+@media screen and (max-width: 768px) {
+  .booking-widget-wrapper {
+    width: 95%;
+    margin: 15px auto;
+    padding: 16px 20px 20px 20px;
+  }
+
+  .widget-header {
+    margin-bottom: 12px;
+    min-height: 28px;
+  }
+
+  .language-button {
+    padding: 2px 5px;
+    font-size: 9px;
+  }
+
+  .language-flag {
+    width: 11px;
+    height: 8px;
+    font-size: 9px;
+  }
+
+  .language-arrow {
+    font-size: 7px;
+  }
+
+  .language-menu {
+    min-width: 110px;
+    max-height: 180px;
+  }
+
+  .language-option {
+    padding: 4px 7px;
+    font-size: 9px;
+    gap: 5px;
+  }
+
+  .guests-counter {
+    padding: 16px;
+  }
+
+  .guests-button {
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
+  }
+
+  .guests-controls {
+    gap: 12px;
+  }
+  
+  .booking-widget-wrapper input {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .date-input-wrapper {
+    margin-bottom: 18px;
+  }
+
+  .guests-input-wrapper {
+    margin-bottom: 18px;
+  }
+  
+  .booking-widget-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+    right: 16px;
+    padding: 12px;
+    font-size: 20px;
+  }
+  
+  .booking-widget-wrapper button {
+    padding: 18px;
+    font-size: 17px;
+  }
+}
+
+/* MOBILE */
+@media screen and (max-width: 480px) {
+  .booking-widget-wrapper.mobile-fullscreen {
+    width: 100%;
+    margin: 0;
+    padding: 16px 16px 20px 16px;
+    border-radius: 0;
+    box-shadow: none;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .widget-header {
+    margin-bottom: 16px;
+    min-height: 30px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .language-button {
+    padding: 3px 6px;
+    font-size: 9px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .language-flag {
+    width: 11px;
+    height: 8px;
+    font-size: 9px;
+  }
+  
+  .booking-widget-wrapper.mobile-fullscreen label {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .booking-widget-wrapper.mobile-fullscreen input {
+    padding: 18px 16px;
+    font-size: 18px;
+    border-radius: 12px;
+    border-width: 2px;
+    min-height: 56px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .date-input-wrapper {
+    margin-bottom: 24px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .guests-input-wrapper {
+    margin-bottom: 24px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .guests-counter {
+    padding: 18px 16px;
+    border-radius: 12px;
+    min-height: 56px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .guests-button {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .guests-controls {
+    gap: 14px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .guests-display {
+    font-size: 18px;
+    min-width: 28px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen input[type="date"]::-webkit-calendar-picker-indicator {
+    right: 20px;
+    padding: 16px;
+    font-size: 24px;
+    transform: translateY(-50%) scale(1.2);
+  }
+  
+  .booking-widget-wrapper.mobile-fullscreen button {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 12px;
+    margin-top: 20px;
+    min-height: 60px;
+  }
+}
+
+/* MOBILE PICCOLI */
+@media screen and (max-width: 360px) {
+  .booking-widget-wrapper.mobile-fullscreen {
+    padding: 14px 12px 18px 12px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .widget-header {
+    margin-bottom: 14px;
+  }
+  
+  .booking-widget-wrapper.mobile-fullscreen input {
+    padding: 16px 14px;
+    min-height: 52px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .guests-counter {
+    padding: 16px 14px;
+    min-height: 52px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .guests-button {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .guests-controls {
+    gap: 12px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .date-input-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .booking-widget-wrapper.mobile-fullscreen .guests-input-wrapper {
+    margin-bottom: 20px;
+  }
+  
+  .booking-widget-wrapper.mobile-fullscreen button {
+    padding: 18px;
+    min-height: 56px;
+  }
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  display: none;
+}
+
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.loading button {
+  position: relative;
+}
+
+.loading button::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* iOS Safari and mobile specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .booking-widget-wrapper input[type="date"] {
+    -webkit-appearance: none;
+    background-color: var(--widget-input-background);
+  }
+}
+
+/* Prevent zoom on input focus on mobile */
+@media screen and (max-width: 768px) {
+  .booking-widget-wrapper input[type="date"] {
+    font-size: 16px !important;
+  }
+}
